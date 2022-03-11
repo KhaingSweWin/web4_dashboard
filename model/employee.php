@@ -1,27 +1,42 @@
 <?php
-include_once __DIR__.'/../includes/db.php';
 class Employee{
-private $pdo=null;
-public function getEmpsInfo()
+protected $eid;
+protected $name;
+private $salary;
+public function __construct($eid,$name,$salary){
+    $this->name=$name;
+    $this->eid=$eid;
+    $this->salary=$salary;
+}
+function display()
 {
-    $this->pdo=Database::connect();
-    if($this->pdo!=null)
-    {
-        echo "successful connection";
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //sql query
-        $sql="select * from employee";
-        //sql statement
-        $statement=$this->pdo->prepare($sql);
-        //run sql statement
-        $statement->execute();
-        //get the results
-        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
-        //echo sizeof($results);
-        return $results;
-    }
-}
-
+    echo $this->eid . "<br>";
+    echo $this->name . "<br>";
+    echo $this->salary . "<br>";
 
 }
+}
+class Sales extends Employee {
+private $dept;
+private $bonus;
+
+public function __construct($eid,$name,$salary,$dept,$bonus){
+ //parent::__construct("0001","Dolly",15000);
+ $this->eid=$eid;
+ $this->name=$name;
+ $this->dept=$dept;
+ $this->bonus=$bonus;
+}
+function display1()
+{
+    $this->display();
+    echo $this->dept;
+    echo $this->bonus;
+}
+
+}
+$emp1=new Employee("001","David",5000);
+$emp1->display();
+$emp2=new Sales("0010","SuSu",3000,"sales and marketing",0.7);
+$emp2->display1();
 ?>
