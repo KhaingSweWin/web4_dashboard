@@ -1,8 +1,8 @@
 <?php
 include_once __DIR__.'/../includes/db.php';
-class Employee{
+class Department{
 private $pdo=null;
-public function getEmpsInfo()
+public function getDeptsInfo()
 {
     $this->pdo=Database::connect();
     if($this->pdo!=null)
@@ -10,9 +10,7 @@ public function getEmpsInfo()
         echo "successful connection";
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //sql query
-        $sql="SELECT employee.* , department.name as dept_name FROM
-        employee inner join department
-        on employee.dept_id=department.id ";
+        $sql="SELECT * from department ";
         //sql statement
         $statement=$this->pdo->prepare($sql);
         //run sql statement

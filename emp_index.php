@@ -12,7 +12,7 @@ $results=$empcontroller->getEmployees();
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Employee Information</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                        <a href="emp_create.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Add New Employee</a>
                     </div>
                     <div class="row">
@@ -26,6 +26,7 @@ $results=$empcontroller->getEmployees();
                                     <th>Dept</th>
                                     <th>Email</th>
                                     <th>Address</th>
+                                    <th>Actions</th>
                                 </tr>
                                 <?php
                                 $count=1;
@@ -36,9 +37,10 @@ $results=$empcontroller->getEmployees();
                                     echo "<td>" .$result['name'] ."</td>";
                                     echo "<td>" .$result['nrc'] ."</td>";
                                     echo "<td>" .$result['position'] ."</td>";
-                                    echo "<td>" .$result['dept_id'] ."</td>";
+                                    echo "<td>" .$result['dept_name'] ."</td>";
                                     echo "<td>" .$result['email'] ."</td>";
                                     echo "<td>" .$result['address'] ."</td>";
+                                    echo "<td><a class='btn btn-primary m-2'>View </a><a class='btn btn-warning m-2'>Edit</a><a class='btn btn-danger m-2'>Delete</a>";
                                     echo "</tr>";
                                 }
                                 ?>
