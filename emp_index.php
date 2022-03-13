@@ -1,5 +1,6 @@
 <?php
 include_once __DIR__.'/controller/empcontroller.php';
+session_start();
 $empcontroller=new EmpController();
 $results=$empcontroller->getEmployees();
 ?>
@@ -16,7 +17,23 @@ $results=$empcontroller->getEmployees();
                                 class="fas fa-download fa-sm text-white-50"></i> Add New Employee</a>
                     </div>
                     <div class="row">
+                        
+                        <?php
+                            if(isset($_SESSION['message'])) 
+                            {
+                               echo "<div class='col-md-12 alert alert-primary'>";
+                               echo  $_SESSION['message'];
+                               echo "</div>";
+                               
+                            }
+                            unset($_SESSION['message']);
+                               
+                            ?>
+                        
+                    </div>
+                    <div class="row">
                         <div class="col-md-12">
+                            
                             <table class="table table-stripped">
                                 <tr>
                                     <th>No</th>
@@ -40,7 +57,7 @@ $results=$empcontroller->getEmployees();
                                     echo "<td>" .$result['dept_name'] ."</td>";
                                     echo "<td>" .$result['email'] ."</td>";
                                     echo "<td>" .$result['address'] ."</td>";
-                                    echo "<td><a class='btn btn-primary m-2'>View </a><a class='btn btn-warning m-2'>Edit</a><a class='btn btn-danger m-2'>Delete</a>";
+                                    echo "<td><a class='btn btn-primary' href='emp_view.php?id=" . $result['id'] . "'>View </a><a class='btn btn-warning m-2'>Edit</a><a class='btn btn-danger m-2'>Delete</a>";
                                     echo "</tr>";
                                 }
                                 ?>

@@ -7,7 +7,7 @@ public function getDeptsInfo()
     $this->pdo=Database::connect();
     if($this->pdo!=null)
     {
-        echo "successful connection";
+       // echo "successful connection";
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //sql query
         $sql="SELECT * from department ";

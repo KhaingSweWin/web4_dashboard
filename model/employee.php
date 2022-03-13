@@ -7,7 +7,7 @@ public function getEmpsInfo()
     $this->pdo=Database::connect();
     if($this->pdo!=null)
     {
-        echo "successful connection";
+       // echo "successful connection";
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //sql query
         $sql="SELECT employee.* , department.name as dept_name FROM
@@ -21,6 +21,59 @@ public function getEmpsInfo()
         $results=$statement->fetchAll(PDO::FETCH_ASSOC);
         //echo sizeof($results);
         return $results;
+    }
+}
+public function getEmpInfo($id)
+{
+    $this->pdo=Database::connect();
+    if($this->pdo!=null)
+    {
+       // echo "successful connection";
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //sql query
+        $sql="SELECT employee.* , department.name as dept_name FROM
+        employee inner join department
+        on employee.dept_id=department.id 
+        and employee.id=:id";
+        //sql statement
+        $statement=$this->pdo->prepare($sql);
+        //run sql statement
+        $statement->bindParam(":id",$id);
+        $statement->execute();
+        //get the results
+        $result=$statement->fetchAll(PDO::FETCH_ASSOC);
+        //echo sizeof($results);
+        return $result;
+    }
+}
+public function addEmp($name,$nrc,$position,$dept,$email,$phone,$address)
+{
+    $this->pdo=Database::connect();
+    if($this->pdo!=null)
+    {
+       // echo "successful connection";
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //sql query
+        $sql="insert into employee(name,nrc,position,dept_id,email,phone,address) values(:name,:nrc,:pos,:dept,:email,:phone,:addr)";
+        //sql statement
+        $statement=$this->pdo->prepare($sql);
+        $statement->bindParam(":name",$name);
+        $statement->bindParam(":nrc",$nrc);
+        $statement->bindParam(":pos",$position);
+        $statement->bindParam(":dept",$dept);
+        $statement->bindParam(":email",$email);
+        $statement->bindParam(":phone",$phone);
+        $statement->bindParam(":addr",$address);
+        //run sql statement
+        if($statement->execute())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 }
 
