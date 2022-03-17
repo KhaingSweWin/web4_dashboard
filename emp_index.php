@@ -33,10 +33,10 @@ $results=$empcontroller->getEmployees();
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            
-                            <table class="table table-stripped">
-                                <tr>
-                                    <th>No</th>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                        <th>No</th>
                                     <th>Name</th>
                                     <th>NRC</th>
                                     <th>Position</th>
@@ -44,8 +44,22 @@ $results=$empcontroller->getEmployees();
                                     <th>Email</th>
                                     <th>Address</th>
                                     <th>Actions</th>
-                                </tr>
-                                <?php
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                        <th>No</th>
+                                    <th>Name</th>
+                                    <th>NRC</th>
+                                    <th>Position</th>
+                                    <th>Dept</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <?php
                                 $count=1;
                                 foreach($results as $result)
                                 {
@@ -57,11 +71,13 @@ $results=$empcontroller->getEmployees();
                                     echo "<td>" .$result['dept_name'] ."</td>";
                                     echo "<td>" .$result['email'] ."</td>";
                                     echo "<td>" .$result['address'] ."</td>";
-                                    echo "<td><a class='btn btn-primary' href='emp_view.php?id=" . $result['id'] . "'>View </a><a class='btn btn-warning m-2'>Edit</a><a class='btn btn-danger m-2'>Delete</a>";
+                                    echo "<td><a class='btn btn-primary' href='emp_view.php?id=" . $result['id'] . "'>View </a><a class='btn btn-warning m-2' href='emp_edit.php?id=".$result['id']."'>Edit</a><a class='btn btn-danger m-2'>Delete</a>";
                                     echo "</tr>";
                                 }
                                 ?>
-                            </table>
+                                    </tbody>
+                                </table>
+                            
                         </div>
                     </div>
                     

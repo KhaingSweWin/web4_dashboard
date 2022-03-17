@@ -14,5 +14,9 @@ public function getEmployee($id)
 {
    return $this->getEmpInfo($id);
 }
+public function updateEmployee($id,$name,$nrc,$position,$dept,$email,$phone,$address)
+{
+   return $this->updateEmpinfo($id,$name,$nrc,$position,$dept,$email,$phone,$address);
+}
 }
 ?>
