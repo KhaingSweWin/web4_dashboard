@@ -107,6 +107,29 @@ public function updateEmpInfo($id,$name,$nrc,$position,$dept,$email,$phone,$addr
         
     }  
 }
-
+public function deleteEmpInfo($id){
+    $this->pdo=Database::connect();
+    if($this->pdo!=null)
+    {
+       // echo "successful connection";
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //sql query
+        $sql="delete from employee where id=:id";
+        //sql statement
+        $statement=$this->pdo->prepare($sql);
+        $statement->bindParam(":id",$id);
+        
+        //run sql statement
+        if($statement->execute())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }    
+}
 }
 ?>

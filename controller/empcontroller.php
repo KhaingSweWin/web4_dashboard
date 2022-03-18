@@ -18,5 +18,9 @@ public function updateEmployee($id,$name,$nrc,$position,$dept,$email,$phone,$add
 {
    return $this->updateEmpinfo($id,$name,$nrc,$position,$dept,$email,$phone,$address);
 }
+public function deleteEmployee($id)
+{
+   return $this->deleteEmpInfo($id);
+}
 }
 ?>

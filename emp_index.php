@@ -58,7 +58,7 @@ $results=$empcontroller->getEmployees();
                                     <th>Actions</th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
+                                    <tbody id="tbody">
                                     <?php
                                 $count=1;
                                 foreach($results as $result)
@@ -71,7 +71,7 @@ $results=$empcontroller->getEmployees();
                                     echo "<td>" .$result['dept_name'] ."</td>";
                                     echo "<td>" .$result['email'] ."</td>";
                                     echo "<td>" .$result['address'] ."</td>";
-                                    echo "<td><a class='btn btn-primary' href='emp_view.php?id=" . $result['id'] . "'>View </a><a class='btn btn-warning m-2' href='emp_edit.php?id=".$result['id']."'>Edit</a><a class='btn btn-danger m-2'>Delete</a>";
+                                    echo "<td id=".$result['id']."><a class='btn btn-primary' href='emp_view.php?id=" . $result['id'] . "'>View </a><a class='btn btn-warning m-2' href='emp_edit.php?id=".$result['id']."'>Edit</a><a class='btn btn-danger m-2 delete'>Delete</a>";
                                     echo "</tr>";
                                 }
                                 ?>
