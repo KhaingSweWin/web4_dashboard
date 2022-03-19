@@ -1,8 +1,11 @@
 <?php
 include_once __DIR__.'/controller/empcontroller.php';
+include_once __DIR__.'/controller/deptcontroller.php';
 session_start();
 $empcontroller=new EmpController();
 $results=$empcontroller->getEmployees();
+$deptcontroller=new DeptController();
+$dept_results=$deptcontroller->getDepartments();
 ?>
 <?php include_once "masterlayouts/header.php"; ?>
                 <!-- End of Topbar -->
@@ -15,6 +18,24 @@ $results=$empcontroller->getEmployees();
                         <h1 class="h3 mb-0 text-gray-800">Employee Information</h1>
                         <a href="emp_create.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Add New Employee</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select name="dept" class="form-control " id="dept1">
+                                <option value="">Select Department</option>
+                                <?php
+                                foreach($dept_results as $dept)
+                                {
+                                    echo "<option value='".$dept['id']."'>" . $dept['name']."</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select name="emp" class="form-control" id="emp1">
+                                <option>Select Employee</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         
@@ -71,7 +92,7 @@ $results=$empcontroller->getEmployees();
                                     echo "<td>" .$result['dept_name'] ."</td>";
                                     echo "<td>" .$result['email'] ."</td>";
                                     echo "<td>" .$result['address'] ."</td>";
-                                    echo "<td id=".$result['id']."><a class='btn btn-primary' href='emp_view.php?id=" . $result['id'] . "'>View </a><a class='btn btn-warning m-2' href='emp_edit.php?id=".$result['id']."'>Edit</a><a class='btn btn-danger m-2 delete'>Delete</a>";
+                                    echo "<td id=".$result['id']."><a class='btn btn-primary' href='emp_view.php?id=" . $result['id'] . "'>View </a><a class='btn btn-warning m-2 edit' href='emp_edit.php?id=".$result['id']."'>Edit</a><a class='btn btn-danger m-2 delete'>Delete</a>";
                                     echo "</tr>";
                                 }
                                 ?>

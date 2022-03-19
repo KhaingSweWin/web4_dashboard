@@ -22,5 +22,9 @@ public function deleteEmployee($id)
 {
    return $this->deleteEmpInfo($id);
 }
+public function getEmployeesDept($deptid)
+{
+   return $this->getEmpDept($deptid);
+}
 }
 ?>

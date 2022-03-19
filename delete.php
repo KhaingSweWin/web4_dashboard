@@ -4,8 +4,9 @@ $id=$_POST['cid'];
 $empcontroller=new EmpController();
 $result=$empcontroller->deleteEmployee($id);
 
+//list the rest of employees
 $results=$empcontroller->getEmployees();
-//variable Type to JS file
+//variable Type to JS file (string)
 $output=null;
 $count=1;
 foreach($results as $emp_result)

@@ -131,5 +131,25 @@ public function deleteEmpInfo($id){
         
     }    
 }
+public function getEmpDept($deptid)
+{
+    $this->pdo=Database::connect();
+    if($this->pdo!=null)
+    {
+       // echo "successful connection";
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //sql query
+        $sql="select * from employee where dept_id=:deptid";
+        //sql statement
+        $statement=$this->pdo->prepare($sql);
+        //run sql statement
+        $statement->bindParam(":deptid",$deptid);
+        $statement->execute();
+        //get the results
+        $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+        //echo sizeof($results);
+        return $results;
+    }  
+}
 }
 ?>

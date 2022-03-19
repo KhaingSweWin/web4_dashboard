@@ -55,6 +55,7 @@
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/myscript.js"></script>
+    <script src="js/demo/myscript1.js"></script>
 
 </body>
 
